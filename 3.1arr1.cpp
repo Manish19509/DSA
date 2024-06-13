@@ -172,8 +172,3 @@
 //     return 0;
 // }
 
-h/w
-make swap using
-=,-
-xor
-temp
