@@ -51,7 +51,7 @@ int main() {
     //just keeep inserting, i will manage the allocations.
     vector<int>v; //array hi hai.
     
-    //Since the condition 1 is always true, the code inside the curly braces {} will execute indefinitely, creating an infinite loop.
+    //Since condition 1 is always true, the code inside the curly braces {} will execute indefinitely, creating an infinite loop.
     //to know capacity and size.
     // while(1){
     //     int d;
@@ -174,3 +174,46 @@ int main(){
    cout << "End Element: " << v.back() << endl;
    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
