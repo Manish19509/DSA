@@ -19,3 +19,6 @@ int main()
         cout << (5 ^ -5) << endl;
         return 0;
 }
+
+
+
