@@ -156,7 +156,7 @@
 // {
 //     // if (n == 1)
 //     // {
-//     //     cout << "number is prime" << endl;
+//     //     cout << "number is not prime" << endl;
 //     // }
 //     // else
 //     for (int i = 2; i < n; i++)
@@ -174,15 +174,15 @@
 // }
 // int main()
 // {
-//     bool prime = checkPrime(1);
-//     if (prime)
-//     {
-//         cout << "its a prime number" << endl;
-//     }
-//     else
-//     {
-//         cout << "its not a prime" << endl;
-//     }
+    // bool prime = checkPrime(1);
+    // if (prime)
+    // {
+    //     cout << "its a prime number" << endl;
+    // }
+    // else
+    // {
+    //     cout << "its not a prime" << endl;
+    // }
 //     return 0;
 // }
 
