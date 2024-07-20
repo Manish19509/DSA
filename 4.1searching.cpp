@@ -333,7 +333,8 @@ int main()
 {
     int arr[] = {10, 20, 30, 50, 40, 30};
     int n = 4;
-    cout << "Peak INDEX iN MOUNTAIN ARRAY " << peakIndexInMountainArray(arr, n) << " and peak element in array is " << arr[peakIndexInMountainArray(arr, n)];
+    cout << "Peak INDEX iN MOUNTAIN ARRAY " << peakIndexInMountainArray(arr, n) <<endl;
+    cout<<"Peak element in array is " << arr[peakIndexInMountainArray(arr, n)];
 }
 
 // Find Pivot Element
