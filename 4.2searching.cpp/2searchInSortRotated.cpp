@@ -1,4 +1,4 @@
-// 33. Search Element in Sorted and rotated Array with vector
+//Search Element in Sorted and rotated Array with vector
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -18,35 +18,14 @@ int findPivotIndex(vector<int> &v)
             // single element
             return s;
         }
-        if (v[mid] > v[mid + 1])
+        if (mid + 1 < n && v[mid] > v[mid + 1]) // important
             return mid;
-        else if (v[mid] < v[mid - 1])
+        else if (mid - 1 >= 0 && v[mid] < v[mid - 1]) // important
             return mid - 1;
         else if (v[s] > v[mid])
             e = mid - 1;
         else
             s = mid + 1;
-    }
-    return -1;
-}
-
-int binarySearch(vector<int> &v, int s, int e, int target)
-{
-    while (s <= e)
-    {
-        int mid = s + (e - s) / 2;
-        if (v[mid] == target)
-        {
-            return mid;
-        }
-        else if (target > v[mid])
-        {
-            s = mid + 1;
-        }
-        else
-        {
-            e = mid - 1;
-        }
     }
     return -1;
 }
