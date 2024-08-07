@@ -71,7 +71,7 @@ int main()
 //   int sum = 0;
 //   for (int i = 0; i < n; i++)
 //   {
-//     sum += arr[i];
+//    sum += arr[i];
 //   }
 //   auto end = high_resolution_clock::now(); // End measuring time    cout<<sum;
 //   // Calculate durations

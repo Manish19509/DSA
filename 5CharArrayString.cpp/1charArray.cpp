@@ -55,8 +55,8 @@ int main()
 
     // i/p insertion
     // cin >> ch;
-    cout<<"Enter your character : ";
-    cin.getline(ch ,100); //(character array,maximum size of input )
+    cout << "Enter your character : ";
+    cin.getline(ch, 100); //(character array,maximum size of input )
 
     // print
     cout << "Printing the value of ch : " << ch;
@@ -84,7 +84,7 @@ int findLength(char ch[], int size)
     //     }
     // }
 
-    //using while loop
+    // using while loop
     int index = 0;
     while (ch[index] != '\0')
     {
