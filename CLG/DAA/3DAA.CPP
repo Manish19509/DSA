@@ -4,24 +4,26 @@
 
 using namespace std;
 
-void findFrequency(const vector<int>& arr) {
+unordered_map<int, int> findFrequency(const vector<int>& arr) {
     unordered_map<int, int> frequencyMap;
-
-    // Count the frequency of each element in the array
-    for (int num : arr) {
-        frequencyMap[num]++;
+    for (int element : arr) {
+        frequencyMap[element]++;
     }
-
-    // Print the frequency of each element
+    return frequencyMap;
+}
+int main() {
+    int n;
+    cout << "Enter the number of elements in the array: ";
+    cin >> n;
+    vector<int> arr(n);
+    cout << "Enter the elements of the array: ";
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+    unordered_map<int, int> frequencyMap = findFrequency(arr);
+    cout << "Element frequencies:" << endl;
     for (const auto& pair : frequencyMap) {
         cout << "Element " << pair.first << " occurs " << pair.second << " times." << endl;
     }
-}
-
-int main() {
-    vector<int> arr = {1, 2, 2, 3, 3, 3, 4, 5, 5, 5, 5};
-
-    findFrequency(arr);
-
     return 0;
 }

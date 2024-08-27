@@ -2,456 +2,474 @@
 
 // using namespace std;
 
-// // Node structure for Singly Linked List
-// struct Node
-// {
-//     int data;
-//     Node *next;
-
-//     Node(int val) : data(val), next(nullptr) {}
-// };
-
-// // Insert a new node at the beginning of the list
-// void insertAtBeginning(Node *&head, int newData)
-// {
-//     Node *newNode = new Node(newData);
-//     newNode->next = head;
-//     head = newNode;
-// }
-
-// // Insert a new node at the end of the list
-// void insertAtEnd(Node *&head, int newData)
-// {
-//     Node *newNode = new Node(newData);
-//     if (head == nullptr)
-//     {
-//         head = newNode;
-//         return;
-//     }
-//     Node *temp = head;
-//     while (temp->next != nullptr)
-//     {
-//         temp = temp->next;
-//     }
-//     temp->next = newNode;
-// }
-
-// // Delete the node at the beginning of the list
-// void deleteFromBeginning(Node *&head)
-// {
-//     if (head == nullptr)
-//         return;
-//     Node *temp = head;
-//     head = head->next;
-//     delete temp;
-// }
-
-// // Delete the node at the end of the list
-// void deleteFromEnd(Node *&head)
-// {
-//     if (head == nullptr)
-//         return;
-//     if (head->next == nullptr)
-//     {
-//         delete head;
-//         head = nullptr;
-//         return;
-//     }
-//     Node *temp = head;
-//     while (temp->next->next != nullptr)
-//     {
-//         temp = temp->next;
-//     }
-//     delete temp->next;
-//     temp->next = nullptr;
-// }
-
-// // Print the linked list
-// void printList(Node *head)
-// {
-//     Node *temp = head;
-//     while (temp != nullptr)
-//     {
-//         cout << temp->data << " -> ";
-//         temp = temp->next;
-//     }
-//     cout << "NULL" << endl;
-// }
-
-// int main()
-// {
-//     Node *head = nullptr;
-
-//     // Insert elements at the beginning
-//     insertAtBeginning(head, 3);
-//     insertAtBeginning(head, 2);
-//     insertAtBeginning(head, 1);
-//     cout << "After inserting at the beginning: ";
-//     printList(head);
-
-//     // Insert elements at the end
-//     insertAtEnd(head, 4);
-//     insertAtEnd(head, 5);
-//     cout << "After inserting at the end: ";
-//     printList(head);
-
-//     // Delete elements from the beginning
-//     deleteFromBeginning(head);
-//     cout << "After deleting from the beginning: ";
-//     printList(head);
-
-//     // Delete elements from the end
-//     deleteFromEnd(head);
-//     cout << "After deleting from the end: ";
-//     printList(head);
-
-//     return 0;
-// }
-
-// #include <iostream>
-
-// using namespace std;
-
-// // Node structure for Doubly Linked List
+// // Node for doubly linked list
 // struct DoublyNode
 // {
 //     int data;
-//     DoublyNode *next;
 //     DoublyNode *prev;
-
-//     DoublyNode(int val) : data(val), next(nullptr), prev(nullptr) {}
+//     DoublyNode *next;
 // };
 
-// // Node structure for Circular Linked List
+// // Node for circular linked list
 // struct CircularNode
 // {
 //     int data;
 //     CircularNode *next;
-
-//     CircularNode(int val) : data(val), next(this) {}
 // };
 
-// // Doubly Linked List Operations
-
-// void insertAtBeginning(DoublyNode *&head, int newData)
+// // Doubly linked list class
+// class DoublyLinkedList
 // {
-//     DoublyNode *newNode = new DoublyNode(newData);
-//     newNode->next = head;
-//     if (head != nullptr)
-//     {
-//         head->prev = newNode;
-//     }
-//     head = newNode;
-// }
+// private:
+//     DoublyNode *head;
 
-// void insertAtEnd(DoublyNode *&head, int newData)
-// {
-//     DoublyNode *newNode = new DoublyNode(newData);
-//     if (head == nullptr)
+// public:
+//     DoublyLinkedList() : head(nullptr) {}
+
+//     void insertAtBeginning(int value)
 //     {
+//         DoublyNode *newNode = new DoublyNode();
+//         newNode->data = value;
+//         newNode->prev = nullptr;
+//         newNode->next = head;
+
+//         if (head != nullptr)
+//         {
+//             head->prev = newNode;
+//         }
 //         head = newNode;
-//         return;
 //     }
-//     DoublyNode *temp = head;
-//     while (temp->next != nullptr)
-//     {
-//         temp = temp->next;
-//     }
-//     temp->next = newNode;
-//     newNode->prev = temp;
-// }
 
-// void deleteFromBeginning(DoublyNode *&head)
+//     void insertAtEnd(int value)
+//     {
+//         DoublyNode *newNode = new DoublyNode();
+//         newNode->data = value;
+//         newNode->next = nullptr;
+
+//         if (head == nullptr)
+//         {
+//             newNode->prev = nullptr;
+//             head = newNode;
+//             return;
+//         }
+
+//         DoublyNode *temp = head;
+//         while (temp->next != nullptr)
+//         {
+//             temp = temp->next;
+//         }
+
+//         temp->next = newNode;
+//         newNode->prev = temp;
+//     }
+
+//     void deleteFromBeginning()
+//     {
+//         if (head == nullptr)
+//         {
+//             cout << "List is empty!" << endl;
+//             return;
+//         }
+
+//         DoublyNode *temp = head;
+//         head = head->next;
+
+//         if (head != nullptr)
+//         {
+//             head->prev = nullptr;
+//         }
+
+//         delete temp;
+//     }
+
+//     void deleteFromEnd()
+//     {
+//         if (head == nullptr)
+//         {
+//             cout << "List is empty!" << endl;
+//             return;
+//         }
+
+//         if (head->next == nullptr)
+//         {
+//             delete head;
+//             head = nullptr;
+//             return;
+//         }
+
+//         DoublyNode *temp = head;
+//         while (temp->next != nullptr)
+//         {
+//             temp = temp->next;
+//         }
+
+//         temp->prev->next = nullptr;
+//         delete temp;
+//     }
+
+//     void display()
+//     {
+//         DoublyNode *temp = head;
+//         while (temp != nullptr)
+//         {
+//             cout << temp->data << " ";
+//             temp = temp->next;
+//         }
+//         cout << endl;
+//     }
+// };
+
+// // Circular linked list class
+// class CircularLinkedList
 // {
-//     if (head == nullptr)
-//         return;
-//     DoublyNode *temp = head;
-//     head = head->next;
-//     if (head != nullptr)
-//     {
-//         head->prev = nullptr;
-//     }
-//     delete temp;
-// }
+// private:
+//     CircularNode *head;
 
-// void deleteFromEnd(DoublyNode *&head)
-// {
-//     if (head == nullptr)
-//         return;
-//     if (head->next == nullptr)
-//     {
-//         delete head;
-//         head = nullptr;
-//         return;
-//     }
-//     DoublyNode *temp = head;
-//     while (temp->next != nullptr)
-//     {
-//         temp = temp->next;
-//     }
-//     temp->prev->next = nullptr;
-//     delete temp;
-// }
+// public:
+//     CircularLinkedList() : head(nullptr) {}
 
-// void printDoublyList(DoublyNode *head)
-// {
-//     DoublyNode *temp = head;
-//     while (temp != nullptr)
+//     void insertAtBeginning(int value)
 //     {
-//         cout << temp->data << " <-> ";
-//         temp = temp->next;
-//     }
-//     cout << "NULL" << endl;
-// }
+//         CircularNode *newNode = new CircularNode();
+//         newNode->data = value;
 
-// // Circular Linked List Operations
+//         if (head == nullptr)
+//         {
+//             newNode->next = newNode;
+//             head = newNode;
+//             return;
+//         }
 
-// void insertAtBeginning(CircularNode *&head, int newData)
-// {
-//     CircularNode *newNode = new CircularNode(newData);
-//     if (head == nullptr)
-//     {
+//         CircularNode *temp = head;
+//         while (temp->next != head)
+//         {
+//             temp = temp->next;
+//         }
+
+//         newNode->next = head;
+//         temp->next = newNode;
 //         head = newNode;
-//         return;
 //     }
-//     CircularNode *temp = head;
-//     while (temp->next != head)
-//     {
-//         temp = temp->next;
-//     }
-//     temp->next = newNode;
-//     newNode->next = head;
-//     head = newNode;
-// }
 
-// void insertAtEnd(CircularNode *&head, int newData)
-// {
-//     CircularNode *newNode = new CircularNode(newData);
-//     if (head == nullptr)
+//     void insertAtEnd(int value)
 //     {
-//         head = newNode;
-//         return;
-//     }
-//     CircularNode *temp = head;
-//     while (temp->next != head)
-//     {
-//         temp = temp->next;
-//     }
-//     temp->next = newNode;
-//     newNode->next = head;
-// }
+//         CircularNode *newNode = new CircularNode();
+//         newNode->data = value;
 
-// void deleteFromBeginning(CircularNode *&head)
-// {
-//     if (head == nullptr)
-//         return;
-//     if (head->next == head)
-//     {
-//         delete head;
-//         head = nullptr;
-//         return;
-//     }
-//     CircularNode *temp = head;
-//     CircularNode *last = head;
-//     while (last->next != head)
-//     {
-//         last = last->next;
-//     }
-//     head = head->next;
-//     last->next = head;
-//     delete temp;
-// }
+//         if (head == nullptr)
+//         {
+//             newNode->next = newNode;
+//             head = newNode;
+//             return;
+//         }
 
-// void deleteFromEnd(CircularNode *&head)
-// {
-//     if (head == nullptr)
-//         return;
-//     if (head->next == head)
-//     {
-//         delete head;
-//         head = nullptr;
-//         return;
-//     }
-//     CircularNode *temp = head;
-//     while (temp->next->next != head)
-//     {
-//         temp = temp->next;
-//     }
-//     delete temp->next;
-//     temp->next = head;
-// }
+//         CircularNode *temp = head;
+//         while (temp->next != head)
+//         {
+//             temp = temp->next;
+//         }
 
-// void printCircularList(CircularNode *head)
-// {
-//     if (head == nullptr)
-//         return;
-//     CircularNode *temp = head;
-//     do
-//     {
-//         cout << temp->data << " -> ";
-//         temp = temp->next;
-//     } while (temp != head);
-//     cout << "(head)" << endl;
-// }
+//         temp->next = newNode;
+//         newNode->next = head;
+//     }
 
-// // Main Function
+//     void deleteFromBeginning()
+//     {
+//         if (head == nullptr)
+//         {
+//             cout << "List is empty!" << endl;
+//             return;
+//         }
+
+//         if (head->next == head)
+//         {
+//             delete head;
+//             head = nullptr;
+//             return;
+//         }
+
+//         CircularNode *temp = head;
+//         while (temp->next != head)
+//         {
+//             temp = temp->next;
+//         }
+
+//         CircularNode *toDelete = head;
+//         head = head->next;
+//         temp->next = head;
+//         delete toDelete;
+//     }
+
+//     void deleteFromEnd()
+//     {
+//         if (head == nullptr)
+//         {
+//             cout << "List is empty!" << endl;
+//             return;
+//         }
+
+//         if (head->next == head)
+//         {
+//             delete head;
+//             head = nullptr;
+//             return;
+//         }
+
+//         CircularNode *temp = head;
+//         CircularNode *prev = nullptr;
+
+//         while (temp->next != head)
+//         {
+//             prev = temp;
+//             temp = temp->next;
+//         }
+
+//         prev->next = head;
+//         delete temp;
+//     }
+
+//     void display()
+//     {
+//         if (head == nullptr)
+//         {
+//             cout << "List is empty!" << endl;
+//             return;
+//         }
+
+//         CircularNode *temp = head;
+//         do
+//         {
+//             cout << temp->data << " ";
+//             temp = temp->next;
+//         } while (temp != head);
+//         cout << endl;
+//     }
+// };
+
 // int main()
 // {
-//     // Doubly Linked List
-//     DoublyNode *doublyHead = nullptr;
-//     cout << "Doubly Linked List Operations:\n";
-//     insertAtBeginning(doublyHead, 10);
-//     insertAtBeginning(doublyHead, 20);
-//     insertAtEnd(doublyHead, 30);
-//     insertAtEnd(doublyHead, 40);
-//     printDoublyList(doublyHead);
-//     deleteFromBeginning(doublyHead);
-//     deleteFromEnd(doublyHead);
-//     printDoublyList(doublyHead);
+//     DoublyLinkedList dll;
+//     CircularLinkedList cll;
 
-//     // Circular Linked List
-//     CircularNode *circularHead = nullptr;
-//     cout << "\nCircular Linked List Operations:\n";
-//     insertAtBeginning(circularHead, 100);
-//     insertAtBeginning(circularHead, 200);
-//     insertAtEnd(circularHead, 300);
-//     insertAtEnd(circularHead, 400);
-//     printCircularList(circularHead);
-//     deleteFromBeginning(circularHead);
-//     deleteFromEnd(circularHead);
-//     printCircularList(circularHead);
+//     int choice, value, listType, operation;
+
+//     do
+//     {
+//         cout << "\n1. Doubly Linked List\n2. Circular Linked List\n3. Exit\nEnter the type of list: ";
+//         cin >> listType;
+
+//         if (listType == 3)
+//             break;
+
+//         cout << "1. Insert at Beginning\n2. Insert at End\n3. Delete from Beginning\n4. Delete from End\n5. Display\n6. Exit\nEnter your choice: ";
+//         cin >> operation;
+
+//         switch (operation)
+//         {
+//         case 1:
+//             cout << "Enter the value to insert: ";
+//             cin >> value;
+//             if (listType == 1)
+//                 dll.insertAtBeginning(value);
+//             else
+//                 cll.insertAtBeginning(value);
+//             break;
+//         case 2:
+//             cout << "Enter the value to insert: ";
+//             cin >> value;
+//             if (listType == 1)
+//                 dll.insertAtEnd(value);
+//             else
+//                 cll.insertAtEnd(value);
+//             break;
+//         case 3:
+//             if (listType == 1)
+//                 dll.deleteFromBeginning();
+//             else
+//                 cll.deleteFromBeginning();
+//             break;
+//         case 4:
+//             if (listType == 1)
+//                 dll.deleteFromEnd();
+//             else
+//                 cll.deleteFromEnd();
+//             break;
+//         case 5:
+//             if (listType == 1)
+//                 dll.display();
+//             else
+//                 cll.display();
+//             break;
+//         case 6:
+//             break;
+//         default:
+//             cout << "Invalid choice!" << endl;
+//         }
+//     } while (operation != 6);
 
 //     return 0;
 // }
 
-
-
-// doubly with circular
 #include <iostream>
-
 using namespace std;
 
-// Node structure for Doubly Circular Linked List
-struct DoublyCircularNode {
+struct Node
+{
     int data;
-    DoublyCircularNode* next;
-    DoublyCircularNode* prev;
-
-    DoublyCircularNode(int val) : data(val), next(nullptr), prev(nullptr) {}
+    Node *next;
 };
 
-// Insert a new node at the beginning of the list
-void insertAtBeginning(DoublyCircularNode*& head, int newData) {
-    DoublyCircularNode* newNode = new DoublyCircularNode(newData);
-    if (head == nullptr) {
-        newNode->next = newNode;
-        newNode->prev = newNode;
-        head = newNode;
-        return;
-    }
-    DoublyCircularNode* last = head->prev;
+class CircularLinkedList
+{
+private:
+    Node *tail;
 
-    newNode->next = head;
-    newNode->prev = last;
-    last->next = newNode;
-    head->prev = newNode;
-    head = newNode;
-}
+public:
+    CircularLinkedList() : tail(nullptr) {}
 
-// Insert a new node at the end of the list
-void insertAtEnd(DoublyCircularNode*& head, int newData) {
-    DoublyCircularNode* newNode = new DoublyCircularNode(newData);
-    if (head == nullptr) {
-        newNode->next = newNode;
-        newNode->prev = newNode;
-        head = newNode;
-        return;
-    }
-    DoublyCircularNode* last = head->prev;
+    void insertAtBeginning(int value)
+    {
+        Node *newNode = new Node();
+        newNode->data = value;
 
-    newNode->next = head;
-    newNode->prev = last;
-    last->next = newNode;
-    head->prev = newNode;
-}
-
-// Delete the node at the beginning of the list
-void deleteFromBeginning(DoublyCircularNode*& head) {
-    if (head == nullptr) return;
-
-    DoublyCircularNode* last = head->prev;
-
-    if (head == head->next) {  // Only one node in the list
-        delete head;
-        head = nullptr;
-        return;
+        if (tail == nullptr)
+        {
+            tail = newNode;
+            tail->next = tail;
+        }
+        else
+        {
+            newNode->next = tail->next;
+            tail->next = newNode;
+        }
     }
 
-    DoublyCircularNode* temp = head;
-    head = head->next;
-    head->prev = last;
-    last->next = head;
+    void insertAtEnd(int value)
+    {
+        Node *newNode = new Node();
+        newNode->data = value;
 
-    delete temp;
-}
-
-// Delete the node at the end of the list
-void deleteFromEnd(DoublyCircularNode*& head) {
-    if (head == nullptr) return;
-
-    DoublyCircularNode* last = head->prev;
-
-    if (head == head->next) {  // Only one node in the list
-        delete head;
-        head = nullptr;
-        return;
+        if (tail == nullptr)
+        {
+            tail = newNode;
+            tail->next = tail;
+        }
+        else
+        {
+            newNode->next = tail->next;
+            tail->next = newNode;
+            tail = newNode;
+        }
     }
 
-    DoublyCircularNode* temp = last->prev;
-    temp->next = head;
-    head->prev = temp;
+    void deleteFromBeginning()
+    {
+        if (tail == nullptr)
+        {
+            cout << "List is empty" << endl;
+            return;
+        }
 
-    delete last;
-}
+        Node *temp = tail->next;
+        if (tail == tail->next)
+        {
+            tail = nullptr;
+        }
+        else
+        {
+            tail->next = temp->next;
+        }
+        delete temp;
+    }
 
-// Print the Doubly Circular Linked List
-void printDoublyCircularList(DoublyCircularNode* head) {
-    if (head == nullptr) return;
+    void deleteFromEnd()
+    {
+        if (tail == nullptr)
+        {
+            cout << "List is empty" << endl;
+            return;
+        }
 
-    DoublyCircularNode* temp = head;
-    do {
-        cout << temp->data << " <-> ";
-        temp = temp->next;
-    } while (temp != head);
-    cout << "(head)" << endl;
-}
+        Node *temp = tail->next;
+        if (tail == tail->next)
+        {
+            delete tail;
+            tail = nullptr;
+        }
+        else
+        {
+            while (temp->next != tail)
+            {
+                temp = temp->next;
+            }
+            temp->next = tail->next;
+            delete tail;
+            tail = temp;
+        }
+    }
 
-// Main function to demonstrate the operations
-int main() {
-    DoublyCircularNode* head = nullptr;
+    void display()
+    {
+        if (tail == nullptr)
+        {
+            cout << "List is empty" << endl;
+            return;
+        }
 
-    // Insert elements at the beginning
-    insertAtBeginning(head, 10);
-    insertAtBeginning(head, 20);
-    insertAtBeginning(head, 30);
-    cout << "After inserting at the beginning: ";
-    printDoublyCircularList(head);
+        Node *temp = tail->next;
+        do
+        {
+            cout << temp->data << " ";
+            temp = temp->next;
+        } while (temp != tail->next);
+        cout << endl;
+    }
+};
 
-    // Insert elements at the end
-    insertAtEnd(head, 40);
-    insertAtEnd(head, 50);
-    cout << "After inserting at the end: ";
-    printDoublyCircularList(head);
+int main()
+{
+    CircularLinkedList cll;
+    int choice, value;
 
-    // Delete elements from the beginning
-    deleteFromBeginning(head);
-    cout << "After deleting from the beginning: ";
-    printDoublyCircularList(head);
+    while (true)
+    {
+        cout << "Circular Linked List:" << endl;
+        cout << "1. Insert at Beginning" << endl;
+        cout << "2. Insert at End" << endl;
+        cout << "3. Delete from Beginning" << endl;
+        cout << "4. Delete from End" << endl;
+        cout << "5. Display" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    // Delete elements from the end
-    deleteFromEnd(head);
-    cout << "After deleting from the end: ";
-    printDoublyCircularList(head);
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter value to insert at beginning: ";
+            cin >> value;
+            cll.insertAtBeginning(value);
+            break;
+        case 2:
+            cout << "Enter value to insert at end: ";
+            cin >> value;
+            cll.insertAtEnd(value);
+            break;
+        case 3:
+            cll.deleteFromBeginning();
+            break;
+        case 4:
+            cll.deleteFromEnd();
+            break;
+        case 5:
+            cll.display();
+            break;
+        case 6:
+            exit(0);
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+        }
+    }
 
     return 0;
 }
